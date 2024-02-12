@@ -1,4 +1,10 @@
 package com.leesan.picApp.repository;
 
-public class PicturesRepository {
+import com.leesan.picApp.model.Picture;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PicturesRepository extends CrudRepository<Picture, Integer> {
+
+
+
 }

@@ -16,7 +16,7 @@ public class DownloadController {
         this.pictureService = pictureService;
     }
     @GetMapping("/download/{id}")
-    public ResponseEntity<byte[]> download(@PathVariable String id) {
+    public ResponseEntity<byte[]> download(@PathVariable Integer id) {
         Picture picture = pictureService.get(id);
 
 

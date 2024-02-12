@@ -1,41 +1,40 @@
 package com.leesan.picApp.service;
 
 import com.leesan.picApp.model.Picture;
+import com.leesan.picApp.repository.PicturesRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 //@Component
 @Service
 public class PictureService {
-    private Map<String, Picture> db = new HashMap<>() {{
-        put("1", new Picture("1", "hello.jpg"));
 
-    }};
+    private final PicturesRepository picturesRepository;
 
-    public Collection<Picture> get(){
-        return db.values();
+    public PictureService(PicturesRepository picturesRepository){
+        this.picturesRepository = picturesRepository;
+    }
+    public Iterable<Picture> get(){
+        return picturesRepository.findAll();
     }
 
-    public Picture get(String id){
-        return db.get(id);
+    public Picture get(Integer id){
+        return picturesRepository.findById(id).orElse(null);
     }
 
 
-    public Picture remove(String id) {
-        return db.remove(id);
+    public void remove(Integer id) {
+        picturesRepository.deleteById(id);
+
     }
 
     public Picture save(String fileName, String contentType, byte[] data) {
         Picture picture = new Picture();
-        picture.setId(UUID.randomUUID().toString());
         picture.setFileName(fileName);
         picture.setContentType((contentType));
         picture.setData(data);
-        db.put(picture.getId(), picture);
+        picturesRepository.save(picture);
         return picture;
     }
 

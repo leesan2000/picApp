@@ -2,12 +2,17 @@ package com.leesan.picApp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table("PHOTOS")
 
 public class Picture {
 
     @JsonIgnore
     private byte[] data;
-    private String id;
+    @Id
+    private Integer id;
 
 
 
@@ -18,16 +23,16 @@ public class Picture {
     public Picture() {
     }
 
-    public Picture(String id, String fileName) {
+    public Picture(Integer id, String fileName) {
         this.id = id;
         this.fileName = fileName;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -20,7 +20,7 @@ public class PicturesController {
         this.pictureService = pictureService;
     }
 
-    @GetMapping("/ ")
+    @GetMapping("/")
     public String hello(){
         return "Hello World";
     }
